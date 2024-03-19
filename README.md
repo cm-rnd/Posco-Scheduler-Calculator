@@ -5,7 +5,7 @@
 
 ```
 ./gradlew clean shadowJar
-./java -jar build/libs/schedulerTimeCalculator-all.jar
+java -jar build/libs/schedulerTimeCalculator-all.jar
 ```
 
 ## How to Contribute
