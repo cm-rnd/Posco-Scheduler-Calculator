@@ -1,8 +1,8 @@
 package schedulercalc.impl;
 
+import schedulercalc.SchedulerCalculator;
+
 import java.time.*;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
 import static java.time.DayOfWeek.*;
