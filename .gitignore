@@ -2,6 +2,8 @@
 /.gradle/
 /build/
 /build/classes/java/main/
+.idea
+*.iml
 # Compiled class file
 *.class
 
