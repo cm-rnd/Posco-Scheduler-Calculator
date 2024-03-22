@@ -7,17 +7,24 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class CancelNonFlexibleWorkerOrderCalc implements SchedulerCalculator {
+/**
+ * 스케줄러 동작 시간 : 01:20
+ */
+public class CancelNonFlexibleWorkerOrderCalc extends SchedulerCalculator {
+    private static final int TARGET_HOUR = 1;
+    private static final int TARGET_MINUTES = 20;
     @Override
     public void printResult() {
         System.out.println("CancelNonFlexibleWorkerOrderCalc 스케줄러의 등록 시간 : " + calc() + "분");
     }
     @Override
     public long calc() {
-        // 자정 ~ 0시 30분인 경우
-        if(now.getHour() == 0 && now.getMinute() >= 0 && now.getMinute() <= 30){
-            return 30 - now.getMinute();
+        int nowTotalMinutes = calcTotalMinutes(now.getHour(), now.getMinute());
+        int targetTotalMinutes = calcTotalMinutes(TARGET_HOUR, TARGET_MINUTES);
+        // 자정 ~ 01시 20분인 경우
+        if(nowTotalMinutes <= targetTotalMinutes){
+            return targetTotalMinutes - nowTotalMinutes;
         }
-        return Duration.between(now, LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.of(0, 30))).toMinutes();
+        return Duration.between(now, LocalDateTime.of(LocalDate.now().plusDays(1), LocalTime.of(TARGET_HOUR, TARGET_MINUTES))).toMinutes();
     }
 }
